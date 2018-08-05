@@ -1,24 +1,29 @@
-
-
-{% extends "base.html" %}
-
-{% block title %}
+{% extends "base.html" %} {% block title %}
 <h1>{{ question.question_text }}</h1>
+{% endblock %} {% block body %} {% if error_message %}
+<p>
+    <strong>{{ error_message }}</strong>
+</p>{% endif %}
+
+
+<div class="w3-container">
+    <div class="w3-card-4">
+        <div class="w3-container w3-green">
+            <h2>Input Form</h2>
+        </div>
+
+        <form class="w3-container" action="{% url 'ReportOne:vote' question.id %}" method="post">
+            <p>
+            {% csrf_token %}
+            {% for choice in question.choice_set.all %}
+                <input class="w3-radio" type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}"/>
+                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+            {% endfor %}
+            <p>
+            <input class="w3-btn w3-green w3-round-large" type="submit" value="Vote" /><p>
+        </form>
+    </div>
+</div>
+<p>
 {% endblock %}
-
-{% block body %}
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<h1>Dupa</h1>
-<form action="{% url 'ReportOne:vote' question.id %}" method="post">
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-{% endfor %}
-<input type="submit" value="Vote" />
-</form>
-{% endblock %}
-
-
-
 

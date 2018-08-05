@@ -6,13 +6,19 @@
 
 {% block body %}
     <h1>{{ question.question_text }}</h1>
-
-    <ul>
-    {% for choice in question.choice_set.all %}
-        <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-    {% endfor %}
-    </ul>
-    <a href="{% url 'ReportOne:detail' question.id %}">Vote again?</a>
+    <div class="w3-container">
+        <table class="w3-table-all">
+        <thead>
+        <tr class="w3-green">
+            <th>Answer</th><th>No. votes</th>
+        </tr>
+        </thead>
+        {% for choice in question.choice_set.all %}
+            <tr><td>{{ choice.choice_text }}</td><td>{{ choice.votes }} vote{{ choice.votes|pluralize }}</td></tr>
+        {% endfor %}
+        </table>
+        <p><a href="{% url 'ReportOne:detail' question.id %}">Vote again?</a></p>
+    </div>
 
 {% endblock %}
 
