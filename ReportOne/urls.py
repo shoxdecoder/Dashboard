@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 
 app_name = 'ReportOne'
-
+#https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_analytics&stacked=h
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),

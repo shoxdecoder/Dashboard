@@ -1,7 +1,14 @@
+
+
+{% extends "base.html" %}
+
+{% block title %}
 <h1>{{ question.question_text }}</h1>
+{% endblock %}
 
+{% block body %}
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
+<h1>Dupa</h1>
 <form action="{% url 'ReportOne:vote' question.id %}" method="post">
 {% csrf_token %}
 {% for choice in question.choice_set.all %}
@@ -10,3 +17,8 @@
 {% endfor %}
 <input type="submit" value="Vote" />
 </form>
+{% endblock %}
+
+
+
+
