@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+""" main file """
 import os
 import sys
 # admin/Kat0wice
